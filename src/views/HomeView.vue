@@ -32,22 +32,22 @@
         <img src="../assets/banner2.png" alt="">
       </div>
     </section>
-    <main class="text-center mt-10 md:px-10 lg:px-16 px-5">
+    <main class="text-center mt-20 md:px-10 lg:px-16 px-5">
       <h1 class="lg:text-5xl text-4xl  py-2 font-bold">
           <span class="text-gradient">Exclusive</span> Products
         </h1>
         <span class="text-gray-400 font-thin text-lg">Search for latest fashion, electronics, household and etc. products to buy from our collections.</span>
         <div class="search-bar my-5">
           <i class="uil uil-search text-xl px-2"></i>
-          <input type="search" name="" placeholder="Search" id="">
+          <input type="search" v-model="search" name="" placeholder="Search" id="">
           <button class="explore-btn ml-auto my-2">Explore Now</button>
         </div>
         <div class="flex justify-center items-center">
           <loader :loading="loading" :color="'#6D5BD0'" :radius="'20'" />
         </div>
-        <section v-if="productsData" class="mt-10">
+        <section v-if="productsData" class="my-10">
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
-            <div v-for="product in productsData" :key="product.id" class="product-card relative">
+            <div v-for="product in filteredProduct" :key="product.id" class="product-card relative">
               <div class="flex justify-center items-center w-full pt-8 pb-4">
                 
                 <img :src="product.image" class="w-28 h-36" alt="">
@@ -69,22 +69,35 @@
             </div>
           </div>
         </section>
+        <section v-if="search.length > 1 && filteredProduct.length == 0" class="my-10">
+          <div class="text-center">
+            <h4 class="text-lg font-medium">
+              No product found with such name
+            </h4>
+          </div>
+        </section>
     </main>
+    <the-footer/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 import loader from '@/components/loadingSpinner.vue';
-
 import TheHeader from '@/components/The-Header.vue'
+import TheFooter from '@/components/The-Footer.vue'
 export default {
   name: 'HomeView',
   components: {
     TheHeader,
-    loader
+    loader,
+    TheFooter
+  },
+  data() {
+    return {
+      search: '',
+    }
   },
    computed: {
     loading() {
@@ -98,7 +111,11 @@ export default {
         return increasedPrice
  
     },
-   
+   filteredProduct() {
+      return this.productsData.filter(product => {
+        return product.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
   },
   mounted(){
     if (!this.productsData.data) {
@@ -126,14 +143,14 @@ export default {
   -webkit-text-fill-color: transparent;
 }
 .explore-btn {
-  background: #000;
+  background: #151515;
   font-size: 14px;
   color: #fff;
   border-radius: 8px;
   padding: 0.6rem 1.2rem;
 }
 .start-btn {
-  border: 1px solid #000;
+  border: 1px solid #151515;
   border-radius: 8px;
   font-size: 14px;
   padding: 0.6rem 1.2rem;
@@ -167,14 +184,14 @@ h1 {
     position: absolute;
     top: 10px;
     z-index: 4;
-    background: #000;
+    background: #151515;
     color: #fff;
     margin-left: 10px;
     border-radius: 4px;
     padding: 1px 4px;
   }
   /* height: 330px; */
-  border: 1px solid #000;
+  border: 1px solid #151515;
   border-radius: 8px;
   
   display: flex;
@@ -183,17 +200,17 @@ h1 {
   .product-detail {
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
-    background: #000;
+    background: #151515;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 200px;
+    height: 190px;
   }
   .buy {
     background: #ad5ef4;
-    padding: 5px;
+    padding: 8px;
     border-radius: 4px;
   }
 }

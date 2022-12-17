@@ -23,7 +23,7 @@
         </li>
          <li class="search-bar hidden md:flex">
           <i class="uil uil-search text-lg px-2"></i>
-          <input type="search" name="" placeholder="Search" id="">
+          <input type="search" name="" placeholder="" id="">
         </li>
         <li class="nav-li hidden md:flex">
           <a class="nav--lin relative" href>
@@ -103,6 +103,7 @@ header {
     color: #d3d3d3;
     background-color:#fafafa ;
     border-radius: 8px;
+    width: 200px;
     height: 38px;
     align-items: center;
     /* padding: 0.5rem; */

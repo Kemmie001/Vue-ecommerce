@@ -36,7 +36,6 @@ export default createStore({
         
       })
       .catch((err) => {
-        console.log(err)
         toastr.error('An error ocurred')
        })
        .finally(() => {

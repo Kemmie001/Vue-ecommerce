@@ -57,12 +57,12 @@
                   {{product.rating.rate}}
                 </span>
               <div class="product-detail px-2  text-left">
-                  <h4 class=" text-sm font-thin w-full">{{product.title}}</h4>
+                  <h4 class=" text-md font-medium w-full">{{product.title}}</h4>
                   <p class="w-full font-thin text-sm capitalize py-1">Category: {{product.category}}</p>
                 <span class="flex justify-between items-center pb-2 w-full">         
-                  <h4 class="text-md font-medium text-[#ad5ef4]">${{parseFloat(product.price.toFixed(2))}}</h4>
+                  <h4 class="text-md font-medium">${{parseFloat(product.price.toFixed(2))}}</h4>
                   <button class="buy" @click="addToCart(product)">
-                    <i class="uil uil-shopping-cart" ></i>
+                    Add to Cart
                   </button>
                 </span>
               </div>
@@ -189,11 +189,11 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 145px;
+    height: 200px;
   }
   .buy {
     background: #ad5ef4;
-    width: 28px;
+    padding: 5px;
     border-radius: 4px;
   }
 }

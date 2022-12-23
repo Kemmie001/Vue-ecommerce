@@ -1,13 +1,13 @@
 <template>
   <header>
     <div class="logo">
-      logo
+      Logo
     </div>
     <div class="nav-li ml-auto md:hidden">
-          <a class="nav--lin relative" href>
+          <div class="nav--lin relative" @click="toggleCart">
             <i class="uil uil-shopping-cart text-3xl"></i> 
             <sub class="absolute -top-2 bg-[#b774fd] text-white flex items-center right-0 justify-center w-4 h-4 rounded-full">{{cart.length}}</sub>  
-          </a>
+          </div>
     </div>
     <span class="menu-toggle" @click="toggleMenu">
         <i class="uil uil-bars"></i>
@@ -26,10 +26,10 @@
           <input type="search" name="" placeholder="" id="">
         </li>
         <li class="nav-li hidden md:flex">
-          <a class="nav--lin relative" href>
-            <i class="uil uil-shopping-cart text-3xl"></i> 
+          <div class="nav--lin relative"   @click="toggleCart">
+            <i class="uil uil-shopping-cart text-3xl" ></i> 
             <sub class="absolute top-0 bg-[#b774fd] text-white flex items-center right-0 justify-center w-4 h-4 rounded-full">{{cart.length}}</sub>  
-          </a>
+          </div>
         </li>
         <li class="nav-li">
           <a class="nav--link" href>
@@ -39,18 +39,26 @@
         
       </ul>
     </nav>
-    
+     <cart :open="cartOpen" :close="toggleCart" />
   </header>
 </template>
 <script>
+import cart from '@/components/cart.vue'
 export default {
   name: "TheHeader",
   data: () => ({
-    menuOpen: false
+    menuOpen: false,
+    cartOpen: false,
   }),
+  components: {
+    cart
+  },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
+    },
+    toggleCart() {
+     this.cartOpen = !this.cartOpen
     }
   },
   computed: {

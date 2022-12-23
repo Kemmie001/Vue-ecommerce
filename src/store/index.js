@@ -12,7 +12,14 @@ export default createStore({
   getters: {
     getProducts: (state) => state.products,
     gettingProducts: (state) => state.gettingProducts,
-    getCart: (state) => state.cart
+    getCart: (state) => state.cart,
+    getCartTotal: (state, getters) => {
+      let total = 0
+      getters.getCart.forEach(product => {
+        total += product.price
+      })
+      return total
+    }
   },
   mutations: {
     setProducts(state, products) {
@@ -21,11 +28,18 @@ export default createStore({
     setGettingProducts: (state, status) => {
       state.gettingProducts = status
     },
-    pushProductToCart(state, productId) {
+    pushProductToCart(state, product) {
       state.cart.push({
-        id: productId
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        price: product.price
       })
-    }
+    },
+    filteredCart(state, product){
+      state.cart = product
+    },
+
   },
   actions: {
     getProducts: async(context) => {
@@ -46,12 +60,16 @@ export default createStore({
     addProductToCart(context, product) {
       const cartItem = context.state.cart.find(item => item.id == product.id)
       if (!cartItem) {
-        context.commit('pushProductToCart', product.id)
+        context.commit('pushProductToCart', product)
         toastr.success('Product added to cart')
       } else {
         toastr.success('Product already exists inside the cart')
       }
-    }
+    },
+    removeFromCart(context, product)  {
+     const newCartList = context.state.cart.filter((item) => item !== product)
+     context.commit('filteredCart', newCartList)
+    },
   },
   modules: {
   }

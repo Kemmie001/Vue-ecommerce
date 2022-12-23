@@ -46,8 +46,8 @@
           <loader :loading="loading" :color="'#6D5BD0'" :radius="'20'" />
         </div>
         <section v-if="productsData" class="my-10">
-          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
-            <div v-for="product in filteredProduct" :key="product.id" class="product-card relative">
+          <div class="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-10 gap-y-16">
+            <div v-for="product in filteredProduct" :key="product.id" class="product-card my-8 md:my-0 relative">
               <div class="flex justify-center items-center w-full pt-8 pb-4">
                 
                 <img :src="product.image" class="w-28 h-36" :alt="product.title">
@@ -216,13 +216,11 @@ h1 {
   
 }
 .title {
-
     width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
     resize: none;
-
   }
 </style>

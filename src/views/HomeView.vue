@@ -46,7 +46,7 @@
           <loader :loading="loading" :color="'#6D5BD0'" :radius="'20'" />
         </div>
         <section v-if="productsData" class="my-10">
-          <div class="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-10 gap-y-16">
+          <div class="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-10 gap-y-10">
             <div v-for="product in filteredProduct" :key="product.id" class="product-card my-8 md:my-0 relative">
               <div class="flex justify-center items-center w-full pt-8 pb-4">
                 

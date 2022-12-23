@@ -50,14 +50,14 @@
             <div v-for="product in filteredProduct" :key="product.id" class="product-card relative">
               <div class="flex justify-center items-center w-full pt-8 pb-4">
                 
-                <img :src="product.image" class="w-28 h-36" alt="">
+                <img :src="product.image" class="w-28 h-36" :alt="product.title">
               </div>
               <span class="rate">
                   <i class="uis uis-star text-orange-400"></i>
                   {{product.rating.rate}}
                 </span>
               <div class="product-detail px-2  text-left">
-                  <h4 class=" text-md font-medium w-full">{{product.title}}</h4>
+                  <h4 class=" font-medium w-full title">{{product.title}}</h4>
                   <p class="w-full font-thin text-sm capitalize py-1">Category: {{product.category}}</p>
                 <span class="flex justify-between items-center pb-2 w-full">         
                   <h4 class="text-md font-medium">${{parseFloat(product.price.toFixed(2))}}</h4>
@@ -206,12 +206,23 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 190px;
+    height: 150px;
   }
   .buy {
     background: #ad5ef4;
     padding: 8px;
     border-radius: 4px;
   }
+  
 }
+.title {
+
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    resize: none;
+
+  }
 </style>
